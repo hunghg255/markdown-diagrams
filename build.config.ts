@@ -3,18 +3,7 @@ import { defineBuildConfig } from 'unbuild'
 export default defineBuildConfig({
   entries: [
     'src/index',
-    {
-      builder: 'mkdist',
-      input: './src/dom',
-      outDir: './dist/dom',
-      format: 'cjs',
-    },
-    {
-      builder: 'mkdist',
-      input: './src/dom',
-      outDir: './dist/dom',
-      format: 'esm',
-    },
+    'src/dom/index',
   ],
   declaration: true,
   clean: true,
@@ -24,4 +13,5 @@ export default defineBuildConfig({
   alias: {
     '~': './src',
   },
+  failOnWarn: false,
 })
