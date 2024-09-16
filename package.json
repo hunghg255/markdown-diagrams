@@ -1,0 +1,99 @@
+{
+  "name": "markdown-diagrams",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@9.10.0",
+  "description": "Supports markdown diagramming.",
+  "author": "hunghg255",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/hunghg255",
+  "homepage": "https://github.com/hunghg255/markdown-diagrams#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hunghg255/markdown-diagrams.git"
+  },
+  "bugs": "https://github.com/hunghg255/markdown-diagrams/issues",
+  "keywords": [
+    "markdown-it",
+    "markdown",
+    "diagram",
+    "mermaid",
+    "plantuml",
+    "zoom",
+    "move",
+    "control",
+    "markdown-diagrams"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./dom": {
+      "types": "./dist/dom/index.d.ts",
+      "import": "./dist/dom/index.mjs",
+      "require": "./dist/dom/index.js"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm run gn && unbuild",
+    "dev": "unbuild --stub",
+    "lint": "eslint .",
+    "prepublishOnly": "nr build",
+    "release": "bumpp && npm publish",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks",
+    "less": "lessc scripts/style.less scripts/style.min.css --clean-css='--s1 --advanced --compatibility=ie8'",
+    "gn": "pnpm run less && esno scripts/generate.mts"
+  },
+  "peerDependencies": {
+    "@types/markdown-it": "*",
+    "markdown-it": "^14.0.0"
+  },
+  "dependencies": {
+    "@panzoom/panzoom": "^4.5.1",
+    "svg2roughjs": "^3.2.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.27.3",
+    "@antfu/ni": "^0.21.12",
+    "@antfu/utils": "^0.7.10",
+    "@types/node": "^20.16.5",
+    "bumpp": "^9.5.2",
+    "eslint": "^9.10.0",
+    "esno": "^4.7.0",
+    "less": "^4.2.0",
+    "less-plugin-clean-css": "^1.6.0",
+    "lint-staged": "^15.2.10",
+    "markdown-it": "^14.1.0",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.6.2",
+    "unbuild": "^2.0.0",
+    "vite": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
